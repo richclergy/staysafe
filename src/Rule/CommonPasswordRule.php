@@ -34,12 +34,6 @@ final class CommonPasswordRule implements RuleInterface
             return true;
         }
 
-        /* $matches = [];
-        preg_match_all('/[^a-zA-Z0-9]/', $value, $matches);
-
-        if (1 === count($matches) && empty($matches[0])) {
-            return false;
-        } */
         $matches = [
             '12345678',
             '123456789',
@@ -52,14 +46,14 @@ final class CommonPasswordRule implements RuleInterface
             'liverpool1',
             'liverpool'
         ];
+        $count = 0;
 
         if (in_array($value, $matches)) {
+            $count++;
         	return false;
         }
 
-        return true;
-
-        // return count($matches[0]) >= $this->frequency;
+        return $count >= $this->frequency;
     }
 
     /**
